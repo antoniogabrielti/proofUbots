@@ -1,14 +1,31 @@
 package ubots.proof.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+import java.util.List;
+
+
 public class Purchase implements Comparable<Purchase> {
     private String codigo;
     private String data;
     private String cliente;
-    private Item [] items;
+    private List<Item> items;
     private double valorTotal;
+
+    public Purchase(@JsonProperty("codigo") String codigo,@JsonProperty("data") String data,@JsonProperty("cliente") String cliente,
+                    @JsonProperty("itens") List<Item> items, @JsonProperty("valorTotal") double valorTotal) {
+        this.codigo = codigo;
+        this.data = data;
+        this.cliente = cliente;
+        this.items = items;
+        this.valorTotal = valorTotal;
+    }
+
+
+    public Purchase(String cliente, Double valorTotal) {
+        this.cliente = cliente;
+        this.valorTotal = valorTotal;
+    }
 
     public String getCodigo() {
         return codigo;
@@ -22,7 +39,11 @@ public class Purchase implements Comparable<Purchase> {
         return cliente;
     }
 
-    public Item[] getItems() {
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Item> getItems() {
         return items;
     }
 
@@ -30,11 +51,7 @@ public class Purchase implements Comparable<Purchase> {
         return valorTotal;
     }
 
-    public void setValorTotal(double valorTotal) {
-        this.valorTotal = valorTotal;
-    }
-
     public int compareTo(Purchase purchase){
-        return Double.compare(this.getValorTotal(),purchase.getValorTotal());
+        return this.getCliente().compareTo(purchase.getCliente());
     }
 }
