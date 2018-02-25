@@ -16,4 +16,13 @@ public class Client {
     public String getCpf() {
         return cpf;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                '}';
+    }
 }

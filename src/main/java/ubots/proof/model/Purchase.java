@@ -1,6 +1,7 @@
 package ubots.proof.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class Purchase implements Comparable<Purchase> {
     private String codigo;
     private String data;
     private String cliente;
+    @SerializedName("itens")
     private List<Item> items;
     private double valorTotal;
 
@@ -20,7 +22,6 @@ public class Purchase implements Comparable<Purchase> {
         this.items = items;
         this.valorTotal = valorTotal;
     }
-
 
     public Purchase(String cliente, Double valorTotal) {
         this.cliente = cliente;
@@ -53,5 +54,16 @@ public class Purchase implements Comparable<Purchase> {
 
     public int compareTo(Purchase purchase){
         return this.getCliente().compareTo(purchase.getCliente());
+    }
+
+    @Override
+    public String toString() {
+        return "Purchase{" +
+                "codigo='" + codigo + '\'' +
+                ", data='" + data + '\'' +
+                ", cliente='" + cliente + '\'' +
+                ", items=" + items +
+                ", valorTotal=" + valorTotal +
+                '}';
     }
 }

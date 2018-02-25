@@ -32,4 +32,16 @@ public class Item {
     public double getPreco() {
         return preco;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "produto='" + produto + '\'' +
+                ", variedade='" + variedade + '\'' +
+                ", pais='" + pais + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", safra=" + safra +
+                ", preco=" + preco +
+                '}';
+    }
 }
