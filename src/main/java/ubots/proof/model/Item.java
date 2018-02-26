@@ -8,6 +8,17 @@ public class Item {
     private int safra;
     private double preco;
 
+    public Item(String produto, String variedade, String pais, String categoria, int safra, double preco) {
+        this.produto = produto;
+        this.variedade = variedade;
+        this.pais = pais;
+        this.categoria = categoria;
+        this.safra = safra;
+        this.preco = preco;
+    }
+
+    public Item() {
+    }
 
     public String getProduto() {
         return produto;

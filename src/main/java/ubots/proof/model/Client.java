@@ -5,6 +5,16 @@ public class Client {
     private String nome;
     private String cpf;
 
+    public Client(int id, String nome, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    public Client() {
+
+    }
+
     public int getId() {
         return id;
     }
