@@ -23,7 +23,7 @@ public class ReportController {
         this.restTemplate = new RestTemplate();
         this.clients = Arrays.asList(restTemplate.getForObject("http://www.mocky.io/v2/598b16291100004705515ec5", Client[].class));
         this.purchases = Arrays.asList(restTemplate.getForObject("http://www.mocky.io/v2/598b16861100004905515ec7", Purchase[].class));
-        this.processData = new ProcessDataController(this.clients, this.purchases);
+        this.processData = new ProcessDataController(this.clients, this.purchases, new PurchaseController(), new ClientController(this.clients));
     }
 
     @RequestMapping(value="/clients" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -37,9 +37,18 @@ public class ReportController {
         return this.purchases;
     }
 
-    @RequestMapping(value="/purchases/sumtotal" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Client> getPurchasesOrdenedTotal() {
-        return this.processData.PurchasesSumTotal();
+    @RequestMapping(value="/clients/totalpurchases" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Client> getClientsOrdenedTotal() {
+        return this.processData.getClientsOrdenedTotal();
     }
 
+    @RequestMapping(value="/client/maxpurchase" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Client getClientMaxPurchase() {
+        return this.processData.getClientMaxPurchase();
+    }
+
+    @RequestMapping(value="/clients/mostfaithful" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Client> getClientsMostFaithful() {
+        return this.processData.getClientsMostFaithful();
+    }
 }
